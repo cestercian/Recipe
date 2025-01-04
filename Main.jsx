@@ -4,10 +4,6 @@ export default function Main() {
 
     const [ingredient , setIngredient] = useState([])
 
-    const ingredientList =
-        ingredient.map(element => (
-            <li key={element}>{element}</li>
-        ))
 
     function handleSubmit(event){
         event.preventDefault()
@@ -28,7 +24,7 @@ export default function Main() {
                 <button>Add ingredient</button>
             </form>
             <ul>
-                {ingredientList.map((item) => (
+                {ingredient.map((item) => (
                     <li key={item}>{item}</li>
                 ))}
             </ul>
