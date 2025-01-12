@@ -42,7 +42,3 @@ This is a simple React application that allows users to add ingredients to a lis
 
 - `react`: JavaScript library for building user interfaces.
 - `react-dom`: React's DOM package for web applications.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
