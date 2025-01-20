@@ -1,3 +1,5 @@
+import {getRecipeFromMistral} from "./ai";
+
 export default function Ingredients(props){
     return (
         <section>
@@ -10,7 +12,7 @@ export default function Ingredients(props){
                     <h3>Ready for a recipe?</h3>
                     <p>Generate a recipe from your list of ingredients.</p>
                 </div>
-                <button>Get a recipe</button>
+                <button onClick={getRecipeFromMistral(props.ingredientsListItems)}>Get a recipe</button>
             </div>}
         </section>
     )
