@@ -1,48 +1,44 @@
-import { useState } from "react";
-import Ingredients from "./Ingredients.jsx";
+import React from "react"
+import IngredientsList from "./Components/Ingredients.jsx"
+import ClaudeRecipe from "./Components/ClaudeRecipe.jsx"
+import { getRecipeFromMistral} from "./ai.jsx"
 
 export default function Main() {
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredients, setIngredients] = React.useState(
+        []
+    )
+    const [recipe, setRecipe] = React.useState("")
 
-    const ingredientsListItems = ingredients.map((ingredient, index) => (
-        <li key={index}>{ingredient}</li>
-    ));
+    async function getRecipe() {
+        const recipeMarkdown = await getRecipeFromMistral(ingredients)
+        setRecipe(recipeMarkdown)
+    }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const newIngredient = formData.get("ingredient").trim();
-
-        if (!newIngredient) {
-            alert("Please enter a valid ingredient!");
-            return;
-        }
-
-        if (ingredients.includes(newIngredient)) {
-            alert("Ingredient already added!");
-            return;
-        }
-
-        setIngredients((prevState) => [...prevState, newIngredient]);
-        event.target.reset();
+    function addIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
     return (
         <main>
-            <form onSubmit={handleSubmit} className="add-ingredient-form">
+            <form action={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
                     aria-label="Add ingredient"
                     name="ingredient"
                 />
-                <button type="submit">Add ingredient</button>
+                <button>Add ingredient</button>
             </form>
 
-            {ingredients.length > 0 && <Ingredients
-                ingredientsListItems={ingredientsListItems}
-                ingredients={ingredients}
-            />}
+            {ingredients.length > 0 &&
+                <IngredientsList
+                    ingredients={ingredients}
+                    getRecipe={getRecipe}
+                />
+            }
+
+            {recipe && <ClaudeRecipe recipe={recipe} />}
         </main>
-    );
+    )
 }
