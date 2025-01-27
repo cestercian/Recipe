@@ -1,5 +1,5 @@
-import Header from "./Header"
-import Main from "./Main"
+import Header from "./Components/Header.jsx"
+import Main from "./Components/Main.jsx"
 
 export default function App() {
     return (
