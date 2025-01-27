@@ -5,9 +5,11 @@ import { getRecipeFromMistral} from "../ai.jsx"
 
 export default function Main() {
     const [ingredients, setIngredients] = React.useState(
-        ["chicken", "all the main spices", "corn", "heavy cream", "pasta"]
+        ["chicken", "all the main spices", "corn", "heavy cream"]
     )
     const [recipe, setRecipe] = React.useState("")
+
+    const showRecipe = React.useRef(null)
 
     async function getRecipe() {
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
@@ -18,6 +20,12 @@ export default function Main() {
         const newIngredient = formData.get("ingredient")
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
+
+    React.useEffect(()=>{
+        if (recipe&&showRecipe.current){
+            showRecipe.current.scrollIntoView({ behavior: "smooth" });
+        }
+    },[recipe])
 
     return (
         <main>
@@ -33,6 +41,7 @@ export default function Main() {
 
             {ingredients.length > 0 &&
                 <IngredientsList
+                    ref={showRecipe}
                     ingredients={ingredients}
                     getRecipe={getRecipe}
                 />
