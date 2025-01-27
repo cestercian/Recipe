@@ -20,7 +20,7 @@ This is a simple React application that allows users to add ingredients to a lis
 2. Install the required dependencies:
 
     ```bash
-    npm install
+    npm force install
     ```
 
 3. Start the development server:
