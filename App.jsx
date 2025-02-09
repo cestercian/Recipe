@@ -1,4 +1,4 @@
-import Header from "./Header"
+import Header from "./Components/Header.jsx"
 import Main from "./Main"
 import SplashCursor from './SplashCursor'
 
