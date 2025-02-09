@@ -1,8 +1,24 @@
 import GradientText from './GradientText'
-
-
-
 import Markdown from "react-markdown";
+import React from "react";
+
+
+const buttonStyle = {
+    border: 'none',
+    borderRadius: '6px',
+    background: '#D17557',
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    color: '#FAFAF8',
+    padding: '9px 17px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '0.875rem',
+    cursor: 'pointer',
+};
+
+function newFeature(){
+
+}
+
 export default function ClaudeRecipe(props) {
     return (
         <>
@@ -25,6 +41,7 @@ export default function ClaudeRecipe(props) {
                     {props.recipe}
                 </Markdown>
             </GradientText>
+
 
         </>
 
