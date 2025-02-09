@@ -5,7 +5,7 @@ import { getRecipeFromMistral} from "./ai.jsx"
 
 export default function Main() {
     const [ingredients, setIngredients] = React.useState(
-        []
+        ["Cheese","Pizza","Topping","Oregano"]
     )
     const [recipe, setRecipe] = React.useState("")
 
